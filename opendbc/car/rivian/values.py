@@ -126,8 +126,8 @@ class CarControllerParams:
   # 250 is ~2.8 m/s^2 above 17 m/s, then linearly ramps to ~1.6 m/s^2 from 17 m/s to 9 m/s
   # TODO: it is theorized older models have different steering racks and achieve down to half the
   #  lateral acceleration referenced here at all speeds. detect this and ship a torque increase for those models
-  STEER_MAX = 350  # ndm: was 250; raise highway torque to the panda absolute ceiling (350)
-  STEER_MAX_LOOKUP = [9, 17], [350, 350]  # ndm: flat 350 (was [350, 250]) — must match safety/modes/rivian.h
+  STEER_MAX = 400  # ndm: 250 -> 350 -> 400; 350 still saturated on tight corners. DBC signal allows ±1024; raising incrementally, EPAS-limited. Must match safety/modes/rivian.h
+  STEER_MAX_LOOKUP = [9, 17], [400, 400]  # ndm: flat 400 (was [350, 350], orig [350, 250]) — must match safety/modes/rivian.h
   STEER_STEP = 1
   STEER_DELTA_UP = 3  # torque increase per refresh
   STEER_DELTA_DOWN = 5  # torque decrease per refresh

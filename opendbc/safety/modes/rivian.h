@@ -95,11 +95,11 @@ static void rivian_rx_hook(const CANPacket_t *msg) {
 static bool rivian_tx_hook(const CANPacket_t *msg) {
   // Rivian utilizes more torque at low speed to maintain the same lateral accel
   const TorqueSteeringLimits RIVIAN_STEERING_LIMITS = {
-    .max_torque = 350,
+    .max_torque = 400,
     .dynamic_max_torque = true,
     .max_torque_lookup = {
       {9., 17., 17.},
-      {350, 350, 350},  // ndm: flat 350 (was {350,250,250}) — raise highway cap to the existing absolute ceiling
+      {400, 400, 400},  // ndm: flat 400 (was {350,350,350}) — 350 still saturated on tight corners; raising incrementally. Must match car/rivian/values.py
     },
     .max_rate_up = 3,
     .max_rate_down = 5,
